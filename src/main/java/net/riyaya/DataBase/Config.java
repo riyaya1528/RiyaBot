@@ -5,23 +5,42 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.riyaya.Utils.Logger;
 
-import javax.security.auth.login.LoginException;
 import java.nio.file.Paths;
+import java.util.Locale;
 
 public class Config {
     private static ObjectMapper mapper;
-    private static String json;
-    private static JsonNode jsonNode;
-    private static ObjectNode objectNode;
+    private static String       json;
+    private static JsonNode     jsonNode;
+    private static ObjectNode   objectNode;
+
+    private static String       token, prefix, avatarDir;
+    private static int          maxAvatar, statusChangeDelaySec, avatarChangeDelaySec;
+    private static String[]     statusActivity;
 
 
     public void load() {
         mapper = new ObjectMapper();
         try {
-            json = mapper.readTree(Paths.get("./config.json").toFile()).toString();
-            jsonNode = mapper.readTree(json);
-            objectNode = jsonNode.deepCopy();
+            json                = mapper.readTree(Paths.get("./config.json").toFile()).toString();
+            jsonNode            = mapper.readTree(json);
+            objectNode          = jsonNode.deepCopy();
+
+            token               = objectNode.get("token").asText();
+            prefix              = objectNode.get("prefix").asText();
+            avatarDir           = objectNode.get("avatar_dir").asText();
+            maxAvatar           = objectNode.get("max_avatar_num").asInt();
+            statusChangeDelaySec= objectNode.get("status_change_delay_sec").asInt();
+            avatarChangeDelaySec= objectNode.get("avatar_change_delay_sec").asInt();
+            statusActivity      = jsonNode.get("status_activity").toString()
+                                .replace("[", "")
+                                .replace("]", "")
+                                .replace('"' , ' ')
+                                .replace(" ", "")
+                                .replace("{help_command}", prefix + "help")
+                                .split(",");
         }catch (Exception e) {
+            Logger.warn(e.toString());
             Logger.warn("Couldn't load config.json");
         }
     }
@@ -34,23 +53,32 @@ public class Config {
         }
     }
 
-    public void putInt(String path, int value) {
-        objectNode.put(path, value);
-    }
-
-    public void putString(String path, String value) {
-        objectNode.put(path, value);
-    }
-
     public String getBotToken() {
-        String token = objectNode.get("token").toString();
-        token = token.substring(0, token.length()-1);
-        token = token.substring(1);
-        Logger.info(token);
+        Logger.info("The Bot Token is " + token);
         return token;
     }
 
-    public JsonNode getConfig() {
-        return jsonNode;
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public String[] getStatusActivity() {
+        return statusActivity;
+    }
+
+    public String getAvatarDir() {
+        return avatarDir;
+    }
+
+    public int getMaxAvatar() {
+        return maxAvatar;
+    }
+
+    public int getStatusChangeDelaySec() {
+        return statusChangeDelaySec;
+    }
+
+    public int getAvatarChangeDelaySec() {
+        return avatarChangeDelaySec;
     }
 }
