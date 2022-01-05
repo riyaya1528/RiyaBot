@@ -2,12 +2,10 @@
 
 package net.riyaya;
 
-import net.riyaya.Commands.Command;
-import net.riyaya.Commands.CommandList;
 import net.riyaya.DataBase.Config;
+import net.riyaya.Listener.MessageCreateEvent;
 import net.riyaya.Utils.BotAvatarChanger;
 import net.riyaya.Utils.Logger;
-import net.riyaya.Utils.MessageCreateEvent;
 import net.riyaya.Utils.TextStatusChanger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
@@ -15,9 +13,8 @@ import org.javacord.api.DiscordApiBuilder;
 import java.util.Timer;
 
 public class Main {
-    public  static Config               config;
-    public  static DiscordApi           api;
-    private static final CommandList    commandList = new CommandList();
+    public static Config                config;
+    public static DiscordApi            api;
     private static final Timer          time = new Timer();
 
     public static void main(String[] args) {
@@ -38,6 +35,15 @@ public class Main {
 
         time.scheduleAtFixedRate(new TextStatusChanger(), 3000, config.getStatusChangeDelaySec() * 1000);
         time.scheduleAtFixedRate(new BotAvatarChanger(), 3000, config.getAvatarChangeDelaySec() * 1000);
-        api.addMessageCreateListener(MessageCreateEvent::messageCreateEvent);
+        addListener();
+    }
+
+    private static void addListener() {
+        api.addMessageCreateListener(MessageCreateEvent::onMessageCreateEvent);
+    }
+
+    public static void stop() {
+        config.save();
+        System.exit(0);
     }
 }
