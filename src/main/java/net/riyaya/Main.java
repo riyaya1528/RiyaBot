@@ -1,5 +1,9 @@
+
+
 package net.riyaya;
 
+import net.riyaya.Commands.Command;
+import net.riyaya.Commands.CommandList;
 import net.riyaya.DataBase.Config;
 import net.riyaya.Utils.BotAvatarChanger;
 import net.riyaya.Utils.Logger;
@@ -11,9 +15,10 @@ import org.javacord.api.DiscordApiBuilder;
 import java.util.Timer;
 
 public class Main {
-    public  static Config       config;
-    public  static DiscordApi   api;
-    private static final Timer        time = new Timer();
+    public  static Config               config;
+    public  static DiscordApi           api;
+    private static final CommandList    commandList = new CommandList();
+    private static final Timer          time = new Timer();
 
     public static void main(String[] args) {
 
