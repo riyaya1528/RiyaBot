@@ -11,5 +11,5 @@
 
   "avatar_dir": "gif_source/chino-chan{num}.jpg",
   "max_avatar_num": 5,
-  "avatar_change_delay_sec": 180
+  "avatar_change_delay_sec": 300
 }

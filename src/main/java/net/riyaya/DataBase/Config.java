@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.riyaya.Utils.Logger;
 
 import java.nio.file.Paths;
-import java.util.Locale;
 
 public class Config {
     private static ObjectMapper mapper;
