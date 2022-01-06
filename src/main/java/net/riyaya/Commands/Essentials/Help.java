@@ -1,6 +1,7 @@
 package net.riyaya.Commands.Essentials;
 
 import net.riyaya.Commands.Command;
+import net.riyaya.Main;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 
@@ -35,10 +36,5 @@ public class Help implements Command {
     @Override
     public String description() {
         return "コマンド一覧を表示します";
-    }
-
-    @Override
-    public String command() {
-        return "help";
     }
 }

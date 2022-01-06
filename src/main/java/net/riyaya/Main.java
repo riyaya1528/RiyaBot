@@ -3,6 +3,7 @@
 package net.riyaya;
 
 import net.riyaya.DataBase.Config;
+import net.riyaya.DataBase.Rate;
 import net.riyaya.Listener.MessageCreateEvent;
 import net.riyaya.Utils.BotAvatarChanger;
 import net.riyaya.Utils.Logger;
@@ -15,12 +16,15 @@ import java.util.Timer;
 public class Main {
     public static Config                config;
     public static DiscordApi            api;
+    public static Rate                  rate;
     private static final Timer          time = new Timer();
 
     public static void main(String[] args) {
-
         config = new Config();
         config.load();
+
+        rate = new Rate();
+        rate.setRate(0);
 
         try {
             api = new DiscordApiBuilder()

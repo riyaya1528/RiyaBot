@@ -14,7 +14,7 @@ public class Config {
     private static ObjectNode   objectNode;
 
     private static String       token, prefix, avatarDir;
-    private static int          maxAvatar, statusChangeDelaySec, avatarChangeDelaySec, servers;
+    private static int          maxAvatar, statusChangeDelaySec, avatarChangeDelaySec, servers, maxRate;
     private static String[]     statusActivity;
 
 
@@ -32,6 +32,7 @@ public class Config {
             statusChangeDelaySec= objectNode.get("status_change_delay_sec").asInt();
             avatarChangeDelaySec= objectNode.get("avatar_change_delay_sec").asInt();
             servers             = objectNode.get("servers").asInt();
+            maxRate             = objectNode.get("max_rate").asInt();
             statusActivity      = jsonNode.get("status_activity").toString()
                                 .replace("[", "")
                                 .replace("]", "")
@@ -80,6 +81,10 @@ public class Config {
 
     public int getAvatarChangeDelaySec() {
         return avatarChangeDelaySec;
+    }
+
+    public int getMaxRate() {
+        return maxRate;
     }
 
     public int getServers() {

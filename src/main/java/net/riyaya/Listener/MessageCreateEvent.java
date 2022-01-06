@@ -1,6 +1,8 @@
 package net.riyaya.Listener;
 
 import net.riyaya.Commands.Essentials.Help;
+import net.riyaya.Commands.Essentials.Ping;
+import net.riyaya.Commands.Essentials.Rate;
 import net.riyaya.DataBase.Config;
 import net.riyaya.Main;
 
@@ -17,12 +19,21 @@ public class MessageCreateEvent {
         if(event.getMessage().isPrivateMessage()) {
             return;
         }
+        if(Main.rate.getRate() >= Main.config.getMaxRate()) {
+            event.getChannel().sendMessage("現在、コマンドの処理数が上限に達しました。しばらくしてから再度実行してください");
+            return;
+        }
 
         String[] commands = event.getMessage().getContent().replace(config.getPrefix(), "").split(" ");
 
+        Main.rate.setRate(Main.rate.getRate() + 1);
+
         switch (commands[0]) {
             case "help" -> new Help().action(commands, event);
-            case "ping" -> event.getChannel().sendMessage(":ping_pong: ***Pong!***");
+            case "ping" -> new Ping().action(commands, event);
+            case "rate" -> new Rate().action(commands, event);
         }
+
+        Main.rate.setRate(Main.rate.getRate() - 1);
     }
 }
