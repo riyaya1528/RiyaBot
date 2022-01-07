@@ -3,7 +3,7 @@ package net.riyaya.Utils;
 import java.util.Date;
 
 public class Logger {
-    
+
     public static void info(String log) {
         System.out.println("[" + getDate() + "] [Info] "  + log);
     }
