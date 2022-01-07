@@ -1,5 +1,6 @@
 package net.riyaya.Utils;
 
+import net.dv8tion.jda.api.entities.Activity;
 import net.riyaya.DataBase.Config;
 import net.riyaya.Main;
 
@@ -13,7 +14,7 @@ public class TextStatusChanger extends TimerTask {
         if(now == config.getStatusActivity().length) {
             now = 0;
         }
-        Main.api.updateActivity(config.getStatusActivity()[now]);
+        Main.jdaBuilder.setActivity(Activity.of(Activity.ActivityType.LISTENING, config.getStatusActivity()[now]));
         now = now + 1;
     }
 }

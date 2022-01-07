@@ -1,13 +1,13 @@
 package net.riyaya.Commands.Essentials;
 
 import net.riyaya.Commands.Command;
-import org.javacord.api.event.message.MessageCreateEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Ping implements Command {
 
     @Override
-    public void action(String[] args, MessageCreateEvent event) {
-        event.getChannel().sendMessage(":ping_pong: ***Pong!***");
+    public void action(String[] args, MessageReceivedEvent event) {
+        event.getChannel().sendMessage(":ping_pong: ***Pong! " + event.getJDA().getRestPing() + "***").queue();
     }
 
     @Override
