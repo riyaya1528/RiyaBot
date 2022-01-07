@@ -9,13 +9,10 @@ import net.riyaya.DataBase.Config;
 import net.riyaya.Listener.MessageCreateEvent;
 import net.riyaya.Utils.Logger;
 
-import java.util.Timer;
-
 public class Main {
     public static Config                config;
     public static JDABuilder            jdaBuilder;
     public static JDA                   jda;
-    private static final Timer          time = new Timer();
 
     public static void main(String[] args) {
         config = new Config();

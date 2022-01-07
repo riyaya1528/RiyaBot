@@ -3,8 +3,7 @@ package net.riyaya.Utils;
 import java.util.Date;
 
 public class Logger {
-    private final static Date dateObj = new Date();
-
+    
     public static void info(String log) {
         System.out.println("[" + getDate() + "] [Info] "  + log);
     }
@@ -14,6 +13,7 @@ public class Logger {
     }
 
     private static String getDate() {
-        return dateObj.getHours() + ":" + dateObj.getMinutes() + ":" + dateObj.getSeconds();
+        Date date = new Date();
+        return date.toString();
     }
 }
