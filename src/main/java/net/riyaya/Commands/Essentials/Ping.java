@@ -7,7 +7,7 @@ public class Ping implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        event.getChannel().sendMessage(":ping_pong: ***Pong! " + event.getJDA().getRestPing() + "***").queue();
+        event.getChannel().sendMessage(":ping_pong: ***Pong!***").queue();
     }
 
     @Override

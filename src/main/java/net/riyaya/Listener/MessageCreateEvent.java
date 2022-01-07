@@ -5,7 +5,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.riyaya.Commands.Essentials.Help;
 import net.riyaya.Commands.Essentials.Ping;
-import net.riyaya.Commands.Essentials.Rate;
 import net.riyaya.Commands.Image.*;
 import net.riyaya.DataBase.Config;
 import net.riyaya.Main;
@@ -24,14 +23,8 @@ public class MessageCreateEvent extends ListenerAdapter {
         if (event.getChannel().getType().equals(ChannelType.PRIVATE)) {
             return;
         }
-        if (Main.rate.getRate() >= Main.config.getMaxRate()) {
-            event.getChannel().sendMessage("現在、コマンドの処理数が上限に達しました。しばらくしてから再度実行してください");
-            return;
-        }
 
         String[] commands = event.getMessage().getContentRaw().replace(config.getPrefix(), "").split(" ");
-
-        Main.rate.setRate(Main.rate.getRate() + 1);
 
         switch (commands[0]) {
             case "help":
@@ -40,10 +33,6 @@ public class MessageCreateEvent extends ListenerAdapter {
 
             case "ping":
                 new Ping().action(commands, event);
-                break;
-
-            case "rate":
-                new Rate().action(commands, event);
                 break;
 
             case "ecchi":
@@ -74,8 +63,25 @@ public class MessageCreateEvent extends ListenerAdapter {
                 new Uniform().action(commands, event);
                 break;
 
-        }
+            case "ass":
+                new Ass().action(commands, event);
+                break;
 
-        Main.rate.setRate(Main.rate.getRate() - 1);
+            case "waifu":
+                new Waifu().action(commands, event);
+                break;
+
+            case "selfies":
+                new Selfies().action(commands, event);
+                break;
+
+            case "paizuri":
+                new Paizuri().action(commands, event);
+                break;
+
+            case "oral":
+                new Oral().action(commands, event);
+                break;
+        }
     }
 }
