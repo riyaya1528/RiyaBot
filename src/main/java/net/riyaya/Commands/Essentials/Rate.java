@@ -19,11 +19,6 @@ public class Rate implements Command {
     }
 
     @Override
-    public String help() {
-        return "現在処理してるコマンドの数を表示します";
-    }
-
-    @Override
     public String description() {
         return "現在処理してるコマンドの数を表示します";
     }

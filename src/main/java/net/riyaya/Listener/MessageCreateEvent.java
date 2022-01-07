@@ -3,6 +3,7 @@ package net.riyaya.Listener;
 import net.riyaya.Commands.Essentials.Help;
 import net.riyaya.Commands.Essentials.Ping;
 import net.riyaya.Commands.Essentials.Rate;
+import net.riyaya.Commands.Image.*;
 import net.riyaya.DataBase.Config;
 import net.riyaya.Main;
 
@@ -29,9 +30,16 @@ public class MessageCreateEvent {
         Main.rate.setRate(Main.rate.getRate() + 1);
 
         switch (commands[0]) {
-            case "help" -> new Help().action(commands, event);
-            case "ping" -> new Ping().action(commands, event);
-            case "rate" -> new Rate().action(commands, event);
+            case "help"  -> new Help().action(commands, event);
+            case "ping"  -> new Ping().action(commands, event);
+            case "rate"  -> new Rate().action(commands, event);
+            case "ecchi" -> new Ecchi().action(commands, event);
+            case "ero" -> new Ero().action(commands, event);
+            case "hentai" -> new Hentai().action(commands, event);
+            case "maid" -> new Maid().action(commands, event);
+            case "milf" -> new Milf().action(commands, event);
+            case "oppai" -> new Oppai().action(commands, event);
+            case "uniform" -> new Uniform().action(commands, event);
         }
 
         Main.rate.setRate(Main.rate.getRate() - 1);

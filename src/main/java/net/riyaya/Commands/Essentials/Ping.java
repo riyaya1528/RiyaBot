@@ -11,11 +11,6 @@ public class Ping implements Command {
     }
 
     @Override
-    public String help() {
-        return "pingをします";
-    }
-
-    @Override
     public String description() {
         return "pingをします";
     }

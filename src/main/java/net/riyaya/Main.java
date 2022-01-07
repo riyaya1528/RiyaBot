@@ -3,6 +3,7 @@
 package net.riyaya;
 
 import net.riyaya.DataBase.Config;
+import net.riyaya.DataBase.HTTP;
 import net.riyaya.DataBase.Rate;
 import net.riyaya.Listener.MessageCreateEvent;
 import net.riyaya.Utils.BotAvatarChanger;
