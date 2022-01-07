@@ -1,0 +1,13 @@
+{
+  "token": "TOKEN",
+  "prefix": "r!",
+  "max_rate": 25,
+
+  "status_activity": [
+    "RiyaBotの機能の機能追加要望は",
+    "作成者のDMで受け付けてます",
+    "{help_command}でヘルプを表示"
+  ],
+  "status_change_delay_sec": 5,
+  "servers": 0
+}
