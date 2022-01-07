@@ -14,8 +14,7 @@ public class Config {
     private static ObjectNode   objectNode;
 
     private static String       token, prefix;
-    private static int          statusChangeDelaySec, servers, maxRate;
-    private static String[]     statusActivity;
+    private static int          servers;
 
 
     public void load() {
@@ -27,16 +26,7 @@ public class Config {
 
             token               = objectNode.get("token").asText();
             prefix              = objectNode.get("prefix").asText();
-            statusChangeDelaySec= objectNode.get("status_change_delay_sec").asInt();
             servers             = objectNode.get("servers").asInt();
-            maxRate             = objectNode.get("max_rate").asInt();
-            statusActivity      = jsonNode.get("status_activity").toString()
-                                .replace("[", "")
-                                .replace("]", "")
-                                .replace('"' , ' ')
-                                .replace(" ", "")
-                                .replace("{help_command}", prefix + "help")
-                                .split(",");
         }catch (Exception e) {
             Logger.warn(e.toString());
             Logger.warn("Couldn't load config.json");
@@ -58,18 +48,6 @@ public class Config {
 
     public String getPrefix() {
         return prefix;
-    }
-
-    public String[] getStatusActivity() {
-        return statusActivity;
-    }
-
-    public int getStatusChangeDelaySec() {
-        return statusChangeDelaySec;
-    }
-
-    public int getMaxRate() {
-        return maxRate;
     }
 
     public int getServers() {
