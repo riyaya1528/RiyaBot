@@ -34,7 +34,7 @@ public class Main {
         } catch (Exception e) {
             Logger.warn("Couldn't login discord bot");
             Logger.warn("Bot Token was wrong?");
-            jda.shutdown();
+            System.exit(0);
         }
 
         time.scheduleAtFixedRate(new TextStatusChanger(), 3000, config.getStatusChangeDelaySec() * 1000);
